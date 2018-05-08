@@ -1,11 +1,19 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
+import {getAllUsers} from "./api/users.api";
+import {getAllTasks} from "./api/task.api";
 
 class App extends Component {
-  render() {
-    return (
+    componentDidMount() {
+        getAllUsers()
+        getAllTasks()
+    }
+    render() {
 
-    )
-  }
+
+        return (
+           <div>test</div>
+        )
+    }
 }
 
 export default App
