@@ -1,9 +1,10 @@
 import {fetchLogger} from './utils.api'
+
 const USER_RESOURCE_PATH = `http://tasks.isa.valuepoint.pl/users`
 
 export const getAllUsers = () => {
 
-    fetch(`${USER_RESOURCE_PATH}`)
+    return fetch(`${USER_RESOURCE_PATH}`)
         .then(fetchLogger)
 }
 
@@ -16,6 +17,6 @@ export const getMyUser = (id) => {
     //
     // const _url = `http://tasks.isa.valuepoint.pl/users/${id}`
 
-     return fetch(url)
+    return fetch(url)
         .then(fetchLogger)
 }

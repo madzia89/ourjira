@@ -1,4 +1,5 @@
 import {fetchLogger} from './utils.api'
+
 const TASK_RESOURCE_PATH = 'https://tasks.isa.valuepoint.pl/tasks'
 
 export const addTaskToUser = (creator, title) => {
@@ -16,8 +17,7 @@ export const addTaskToUser = (creator, title) => {
             "Content-Type": "application/json"
         }
     }
-
-    fetch(url, fetchconfig)
+    return fetch(url, fetchconfig)
         .then(fetchLogger)
 }
 
@@ -28,25 +28,24 @@ export const deleteTask = (id) => {
     const toDelete = {
         method: "DELETE"
     }
-
-    fetch(urlek, toDelete)
+    return fetch(urlek, toDelete)
         .then(fetchLogger)
 }
 
 export const getAllTasks = () => {
-    fetch(`${TASK_RESOURCE_PATH}`)
+    return fetch(`${TASK_RESOURCE_PATH}`)
         .then(fetchLogger)
 }
 
 export const getAllMyTasks = (creator) => {
 
-    fetch(`${TASK_RESOURCE_PATH}/search/creator/${creator}`)
+    return fetch(`${TASK_RESOURCE_PATH}/search/creator/${creator}`)
         .then(fetchLogger)
 }
 
 export const getAllMyTasksByAssignee = (assignee) => {
 
-    fetch(`${TASK_RESOURCE_PATH}/search/assignee/${assignee}`)
+    return fetch(`${TASK_RESOURCE_PATH}/search/assignee/${assignee}`)
         .then(fetchLogger)
 }
 
@@ -58,13 +57,13 @@ export const assignTaskToUser = (task_id) => {
     const url = `${TASK_RESOURCE_PATH}/${task_id}/assing-to/${assignee}`
 
     if (assignee.length) {
-        fetch(url)
+        return fetch(url)
             .then(fetchLogger)
     }
 }
 
 export const assignedToMeTask = (taskId, assignee) => {
 
-    fetch(`${TASK_RESOURCE_PATH}/${taskId}/assing-to/${assignee}`)
+    return fetch(`${TASK_RESOURCE_PATH}/${taskId}/assing-to/${assignee}`)
         .then(fetchLogger)
 }

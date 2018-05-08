@@ -1,4 +1,7 @@
 import React, {Component} from 'react'
+
+import TaskView from './views/TaskView/index'
+
 import {getAllUsers} from "./api/users.api";
 import {getAllTasks} from "./api/task.api";
 
@@ -7,11 +10,15 @@ class App extends Component {
         getAllUsers()
         getAllTasks()
     }
+
     render() {
 
 
         return (
-           <div>test</div>
+            <div>
+                <div>test</div>
+                <TaskView/>
+            </div>
         )
     }
 }
