@@ -11,8 +11,11 @@ class TaskView extends Component {
 
     }
 
-    componentDidMount() {
-
+    refresh() {
+        this.setState({
+            imBusy: true
+        })
+//najpierw ustawia flagę na true, zaciąga dane, wrzuca je do stanu i kończy bycie busy
         Promise.all([
             getAllMyTasks('wojcicka.ma@gmail.com'),
             getAllMyTasksByAssignee('wojcicka.ma@gmail.com')
@@ -34,6 +37,9 @@ class TaskView extends Component {
 
     }
 
+    componentDidMount() {
+        this.refresh()
+    }
 
     render() {
 
@@ -45,7 +51,16 @@ class TaskView extends Component {
 
         return (
             <div><h2>Task View</h2>
-            <TasksAssigedToMe {...this.state.tasksAssignedToMe}/>
+                <button className="btn btn-block btn-warning"
+                        onClick={() => {
+                            this.refresh()
+                        }}
+                >Refresh
+                </button>
+                <TasksAssigedToMe {...this.state.tasksAssignedToMe}
+                refresh={() => {
+                    this.refresh()
+                }} />
             </div>
         )
     }

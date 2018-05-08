@@ -54,16 +54,104 @@ export const assignTaskToUser = (task_id) => {
 
     const assignee = prompt('do kogo ma być przypisany task?')
 
-    const url = `${TASK_RESOURCE_PATH}/${task_id}/assing-to/${assignee}`
+    const url = `${TASK_RESOURCE_PATH}/${task_id}/assign-to/${assignee}`
 
-    if (assignee.length) {
-        return fetch(url)
+    const fetchConfig = {
+        method: 'PATCH',
+        body: JSON.stringify({
+            "assignee": assignee
+        }),
+        header: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    if (assignee) {
+        return fetch(url, fetchConfig)
             .then(fetchLogger)
+    } else
+        {
+        return Promise.resolve('')
     }
 }
+
 
 export const assignedToMeTask = (taskId, assignee) => {
 
     return fetch(`${TASK_RESOURCE_PATH}/${taskId}/assing-to/${assignee}`)
         .then(fetchLogger)
+}
+
+
+export const changeDescriptionOfTassk = task_id => {
+    const description = prompt('change description of task')
+
+    const url = `${TASK_RESOURCE_PATH}/${task_id}/change-description`
+
+    const fetchConfig = {
+        method: 'PATCH',
+        body: JSON.stringify({
+            "description": description
+        }),
+        header: {
+            'Content-Type': 'application/json'
+        }
+    }
+    if (description){
+        return fetch(url, fetchConfig)
+            .then(fetchLogger)
+    }
+    else {
+        return Promise.resolve('')
+    }
+}
+
+
+export const changeStatusOfTask = task_id => {
+    const status = prompt('write status')
+
+    const url = `${TASK_RESOURCE_PATH}/${task_id}/change-status`
+
+    const fetchConfig = {
+        method: 'PATCH',
+        body: JSON.stringify({
+            "status": status
+        }),
+        header: {
+            'Content-Type': 'application/json'
+        }
+    }
+    if (status){
+        return fetch(url, fetchConfig)
+            .then(fetchLogger)
+    }
+    else {
+        return Promise.resolve('')
+    }
+}
+
+
+export const changeLogHours = task_id => {
+    const hours = prompt('write hours')
+    const logger = prompt('write logger')
+
+    const url = `${TASK_RESOURCE_PATH}/${task_id}/log-hours`
+
+    const fetchConfig = {
+        method: 'PATCH',
+        body: JSON.stringify({
+            "hours": hours,
+            "logger": logger
+        }),
+        header: {
+            'Content-Type': 'application/json'
+        }
+    }
+    if (hours, logger){
+        return fetch(url, fetchConfig)
+            .then(fetchLogger)
+    }
+    else {
+        return Promise.resolve('')
+    }
 }
