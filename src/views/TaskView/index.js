@@ -44,7 +44,9 @@ class TaskView extends Component {
         }
 
         return (
-            <div><h2>Task View</h2></div>
+            <div><h2>Task View</h2>
+            <TasksAssigedToMe {...this.state.tasksAssignedToMe}/>
+            </div>
         )
     }
 }
